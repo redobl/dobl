@@ -4,6 +4,7 @@ import random
 import sys
 import json
 import sqlite3
+import math
 
 item_types = ["weapon", "armor", "tool", "consumable", "drone"]
 
@@ -29,6 +30,16 @@ def gen_item(c, type=None):
     attributes = "{" + ", ".join(['???'+i for i in json.loads(item[4])]) + "}"
     print(f"{name} {attributes} ({item[5]}/{item[5]})")
 
+# Calculate HP or MP based on starting value and spent SP
+def gen_hp_mp(start, sp):
+    result = start
+    for i in range(sp):
+        newres = math.floor(result*1.05)
+        if newres > result:
+            result = newres
+        else:
+            result += 1
+    print(result)
 
 def main():
     if len(sys.argv) < 2:
@@ -52,6 +63,17 @@ def main():
                     gen_item(c, sys.argv[1])
             else:
                 gen_item(c, sys.argv[1])
+        elif sys.argv[1] in ("hp", "mp"):
+            if len(sys.argv) < 3:
+                print("Usage: generate.py hp|mp [start] <sp>")
+            else:
+                if len(sys.argv) == 3:
+                    start = 100
+                    sp = int(sys.argv[2])
+                else:
+                    start = int(sys.argv[2])
+                    sp = int(sys.argv[3])
+                gen_hp_mp(start, sp)
 
 
 if __name__ == "__main__":
