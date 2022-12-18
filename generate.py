@@ -6,7 +6,8 @@ import json
 import sqlite3
 import math
 
-item_types = ["weapon", "armor", "tool", "consumable", "drone"]
+ITEM_TYPES = ("weapon", "armor", "tool", "consumable", "drone")
+ATTRIBUTES_ALWAYS_KNOWN = ("двуручн", "дальн")
 
 # Pick one of items in database.db depending on weight
 def gen_item(c, type=None):
@@ -27,7 +28,13 @@ def gen_item(c, type=None):
         name = item[1]
     else:
         name = item[2] + " (" + item[1] + ")"
-    attributes = "{" + ", ".join(['???'+i for i in json.loads(item[4])]) + "}"
+    attrList = []
+    for i in json.loads(item[4]):
+        if i in ATTRIBUTES_ALWAYS_KNOWN:
+            attrList.append(i)
+        else:
+            attrList.append("???"+i)
+    attributes = "{" + ", ".join(attrList) + "}"
     print(f"{name} {attributes} ({item[5]}/{item[5]})")
 
 # Calculate HP or MP based on starting value and spent SP
@@ -54,7 +61,7 @@ def main():
                     gen_item(c)
             else:
                 gen_item(c)
-        elif sys.argv[1] in item_types:
+        elif sys.argv[1] in ITEM_TYPES:
             conn = sqlite3.connect("database.db")
             c = conn.cursor()
             if len(sys.argv) == 3:
