@@ -70,9 +70,9 @@ def main():
                     gen_item(c, sys.argv[1])
             else:
                 gen_item(c, sys.argv[1])
-        elif sys.argv[1] in ("hp", "mp"):
+        elif sys.argv[1] in ("hp", "mp", "skill", "trait"):
             if len(sys.argv) < 3:
-                print("Usage: generate.py hp|mp [start] <sp>")
+                print("Usage: generate.py hp|mp|skill|trait [start] <sp>")
             else:
                 if len(sys.argv) == 3:
                     start = 100
