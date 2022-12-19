@@ -5,37 +5,46 @@ import sys
 import json
 import sqlite3
 import math
+from enum import IntEnum
 
 ITEM_TYPES = ("weapon", "armor", "tool", "consumable", "drone")
 ATTRIBUTES_ALWAYS_KNOWN = ("двуручн", "дальн")
 
+class Index(IntEnum):
+    NAME = 0
+    LOOK = 1
+    TYPE = 2
+    ATTRIBUTES = 3
+    DURABILITY = 4
+    WEIGHT = 5
+
 # Pick one of items in database.db depending on weight
 def gen_item(c, type=None):
     if type is not None:
-        c.execute("SELECT * FROM items WHERE type = ?", (type,))
+        c.execute("SELECT name, look, type, attributes, durability, weight FROM items WHERE type = ?", (type,))
     else:
-        c.execute("SELECT * FROM items")
+        c.execute("SELECT name, look, type, attributes, durability, weight FROM items")
     items = c.fetchall()
     for i in range(len(items)):
         items[i] = list(items[i])
-        if items[i][5] is None:
-            items[i][5] = 20
-        if items[i][6] is None:
-            items[i][6] = 1
-    weights = [i[6] for i in items]
+        if items[i][Index.DURABILITY] is None:
+            items[i][Index.DURABILITY] = 20
+        if items[i][Index.WEIGHT] is None:
+            items[i][Index.WEIGHT] = 1
+    weights = [i[Index.WEIGHT] for i in items]
     item = random.choices(items, weights=weights, k=1)[0]
-    if item[2] == item[1]:
-        name = item[1]
+    if item[Index.LOOK] == item[Index.NAME]:
+        name = item[Index.NAME]
     else:
-        name = item[2] + " (" + item[1] + ")"
+        name = item[Index.LOOK] + " (" + item[Index.NAME] + ")"
     attrList = []
-    for i in json.loads(item[4]):
+    for i in json.loads(item[Index.ATTRIBUTES]):
         if i in ATTRIBUTES_ALWAYS_KNOWN:
             attrList.append(i)
         else:
             attrList.append("???"+i)
     attributes = "{" + ", ".join(attrList) + "}"
-    print(f"{name} {attributes} ({item[5]}/{item[5]})")
+    print(f"{name} {attributes} ({item[Index.DURABILITY]}/{item[Index.DURABILITY]})")
 
 # Calculate HP or MP based on starting value and spent SP
 def gen_hp_mp(start, sp):
