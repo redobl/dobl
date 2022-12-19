@@ -8,7 +8,7 @@ import math
 from enum import IntEnum
 
 ITEM_TYPES = ("weapon", "armor", "tool", "consumable", "drone")
-ATTRIBUTES_ALWAYS_KNOWN = ("двуручн", "дальн")
+ATTRIBUTES_ALWAYS_KNOWN = ("двуручн", "дальн", "материал")
 
 class Index(IntEnum):
     NAME = 0
