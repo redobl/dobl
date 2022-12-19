@@ -6,7 +6,7 @@ CREATE TABLE items (
 	look TEXT NOT NULL,
 	"type" TEXT NOT NULL,
 	"attributes" TEXT NOT NULL,
-    durability INTEGER,
-    weight INTEGER,
-    slot TEXT
+	durability INTEGER,
+	weight INTEGER,
+	slot TEXT
 );
