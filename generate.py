@@ -48,6 +48,17 @@ def gen_hp_mp(start, sp):
             result += 1
     print(result)
 
+# Calculate property strength based on starting value and spent SP
+def gen_property(start, sp):
+    result = start
+    for i in range(sp):
+        newres = math.floor(result*1.2)
+        if newres > result:
+            result = newres
+        else:
+            result += 1
+    print(result)
+
 def main():
     if len(sys.argv) < 2:
         print("Usage: generate.py <type> [count]")
@@ -81,6 +92,13 @@ def main():
                     start = int(sys.argv[2])
                     sp = int(sys.argv[3])
                 gen_hp_mp(start, sp)
+        elif sys.argv[1] == "property":
+            if len(sys.argv) < 4:
+                print("Usage: generate.py property <start> <sp>")
+            else:
+                start = int(sys.argv[2])
+                sp = int(sys.argv[3])
+                gen_property(start, sp)
 
 
 if __name__ == "__main__":
