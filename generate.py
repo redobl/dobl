@@ -78,6 +78,7 @@ def main():
             if len(sys.argv) == 3:
                 count = int(sys.argv[2])
                 for i in range(count):
+                    print(i+1, end=". ")
                     gen_item(c)
             else:
                 gen_item(c)
