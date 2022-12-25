@@ -5,6 +5,7 @@ import sys
 import json
 import sqlite3
 import math
+from os import path
 from enum import IntEnum
 
 ITEM_TYPES = ("weapon", "armor", "tool", "consumable", "drone")
@@ -17,6 +18,8 @@ class Index(IntEnum):
     ATTRIBUTES = 3
     DURABILITY = 4
     WEIGHT = 5
+
+scriptDir = path.dirname(path.abspath(__file__))
 
 # Pick one of items in database.db depending on weight
 def gen_item(c, type=None):
@@ -73,7 +76,7 @@ def main():
         print("Usage: generate.py <type> [count]")
     else:
         if sys.argv[1] == "item":
-            conn = sqlite3.connect("database.db")
+            conn = sqlite3.connect(path.join(scriptDir, "database.db"))
             c = conn.cursor()
             if len(sys.argv) == 3:
                 count = int(sys.argv[2])
@@ -83,7 +86,7 @@ def main():
             else:
                 gen_item(c)
         elif sys.argv[1] in ITEM_TYPES:
-            conn = sqlite3.connect("database.db")
+            conn = sqlite3.connect(path.join(scriptDir, "database.db"))
             c = conn.cursor()
             if len(sys.argv) == 3:
                 count = int(sys.argv[2])
