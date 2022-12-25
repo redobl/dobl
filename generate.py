@@ -104,7 +104,7 @@ def main():
                     start = int(sys.argv[2])
                     sp = int(sys.argv[3])
                 print(gen_hp_mp(start, sp))
-        elif sys.argv[1] == "property":
+        elif sys.argv[1] in ["property", "prop"]:
             if len(sys.argv) < 4:
                 print("Usage: generate.py property <start> <sp>")
             else:
