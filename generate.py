@@ -47,7 +47,7 @@ def gen_item(c, type=None):
         else:
             attrList.append("???"+i)
     attributes = "{" + ", ".join(attrList) + "}"
-    print(f"{name} {attributes} ({item[Index.DURABILITY]}/{item[Index.DURABILITY]})")
+    return f"{name} {attributes} ({item[Index.DURABILITY]}/{item[Index.DURABILITY]})"
 
 # Calculate HP or MP based on starting value and spent SP
 def gen_hp_mp(start, sp):
@@ -58,7 +58,7 @@ def gen_hp_mp(start, sp):
             result = newres
         else:
             result += 1
-    print(result)
+    return result
 
 # Calculate property strength based on starting value and spent SP
 def gen_property(start, sp):
@@ -69,7 +69,7 @@ def gen_property(start, sp):
             result = newres
         else:
             result += 1
-    print(result)
+    return result
 
 def main():
     if len(sys.argv) < 2:
@@ -81,19 +81,18 @@ def main():
             if len(sys.argv) == 3:
                 count = int(sys.argv[2])
                 for i in range(count):
-                    print(i+1, end=". ")
-                    gen_item(c)
+                    print(str(i+1)+". "+gen_item(c))
             else:
-                gen_item(c)
+                print(gen_item(c))
         elif sys.argv[1] in ITEM_TYPES:
             conn = sqlite3.connect(path.join(scriptDir, "database.db"))
             c = conn.cursor()
             if len(sys.argv) == 3:
                 count = int(sys.argv[2])
                 for i in range(count):
-                    gen_item(c, sys.argv[1])
+                    print(gen_item(c, sys.argv[1]))
             else:
-                gen_item(c, sys.argv[1])
+                print(gen_item(c, sys.argv[1]))
         elif sys.argv[1] in ("hp", "mp", "skill", "trait"):
             if len(sys.argv) < 3:
                 print("Usage: generate.py hp|mp|skill|trait [start] <sp>")
@@ -104,14 +103,14 @@ def main():
                 else:
                     start = int(sys.argv[2])
                     sp = int(sys.argv[3])
-                gen_hp_mp(start, sp)
+                print(gen_hp_mp(start, sp))
         elif sys.argv[1] == "property":
             if len(sys.argv) < 4:
                 print("Usage: generate.py property <start> <sp>")
             else:
                 start = int(sys.argv[2])
                 sp = int(sys.argv[3])
-                gen_property(start, sp)
+                print(gen_property(start, sp))
 
 
 if __name__ == "__main__":
