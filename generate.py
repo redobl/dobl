@@ -5,6 +5,7 @@ import sys
 import json
 import sqlite3
 import math
+import base64
 from os import path
 from enum import IntEnum
 
@@ -93,6 +94,20 @@ def main():
                     print(gen_item(c, sys.argv[1]))
             else:
                 print(gen_item(c, sys.argv[1]))
+        elif sys.argv[1] == "item_base64":
+            conn = sqlite3.connect(path.join(scriptDir, "database.db"))
+            c = conn.cursor()
+            if len(sys.argv) == 3:
+                count = int(sys.argv[2])
+                res = "1. "+gen_item(c)
+                for i in range(1,count):
+                    res += "\n"+str(i+1)+". "+gen_item(c)
+            else:
+                res = gen_item(c)
+            # encode string to base64
+            encodedBytes = base64.b64encode(res.encode("utf-8"))
+            encodedStr = str(encodedBytes, "utf-8")
+            print(encodedStr)
         elif sys.argv[1] in ("hp", "mp", "skill", "trait"):
             if len(sys.argv) < 3:
                 print("Usage: generate.py hp|mp|skill|trait [start] <sp>")
