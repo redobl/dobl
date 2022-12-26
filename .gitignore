@@ -1,6 +1,7 @@
 .vscode
 dobl.tiled*
 instances.tmx
+test.tmx
 database.db
 config.py
 __pycache__/
