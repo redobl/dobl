@@ -15,6 +15,5 @@ var action = tiled.registerAction("GenInventory", function (action) {
 action.text = "Generate Inventory"
 
 tiled.extendMenu("MapView.Objects", [
-    { action: "GenInventory" },
-    { separator: true }
+    { action: "GenInventory" }
 ]);
