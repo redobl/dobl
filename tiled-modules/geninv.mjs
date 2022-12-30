@@ -1,7 +1,3 @@
-// temporary replacement for tiled.projectFilePath until 1.9.3 is released
-var projectFilePath = "E:\\projects\\dobl"
-tiled.projectFilePath = projectFilePath
-
 var action = tiled.registerAction("GenInventory", function (action) {
     var spentSP = tiled.prompt("How many items?");
     var process = new Process();
