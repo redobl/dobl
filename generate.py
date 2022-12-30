@@ -72,6 +72,13 @@ def gen_property(start, sp):
             result += 1
     return result
 
+# Roll many dice and display results, categorized by value
+def roll_dice(dice, sides):
+    results = [0]*sides
+    for i in range(dice):
+        results[random.randint(0, sides-1)] += 1
+    return results
+
 def main():
     if len(sys.argv) < 2:
         print("Usage: generate.py <type> [count]")
@@ -126,6 +133,15 @@ def main():
                 start = int(sys.argv[2])
                 sp = int(sys.argv[3])
                 print(gen_property(start, sp))
+        elif sys.argv[1] == "dice":
+            if len(sys.argv) < 3:
+                print("Usage: generate.py dice <dice>d<sides>")
+            else:
+                dice = int(sys.argv[2].split("d")[0])
+                sides = int(sys.argv[2].split("d")[1])
+                res = roll_dice(dice, sides)
+                for i in range(sides):
+                    print(str(i+1)+": "+str(res[i]))
 
 
 if __name__ == "__main__":
