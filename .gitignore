@@ -6,3 +6,4 @@ database.db
 config.py
 __pycache__/
 deploy.sh
+dobl.code-workspace
