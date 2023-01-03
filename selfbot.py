@@ -25,21 +25,21 @@ class Client(discord.Client):
                 else:
                     thres = int(message.content[2:])
                 await message.channel.send(f'!r 1d100<={thres}')
-            elif message.content.startswith('-ч'):
+            elif message.content == '-ч':
                 await message.delete()
                 lastMessage = (await message.channel.history(limit=1).flatten())[0]
                 await lastMessage.add_reaction('✅')
-            elif message.content.startswith('-ч,'):
+            elif message.content == '-ч,':
                 await message.delete()
                 lastMessage = (await message.channel.history(limit=1).flatten())[0]
                 await lastMessage.add_reaction('✅')
                 await message.channel.send('!i n')
-            elif message.content.startswith('-ож'):
+            elif message.content == '-ож':
                 await message.delete()
                 lastMessage = (await message.channel.history(limit=1).flatten())[0]
                 await lastMessage.add_reaction('⏳')
 
-        if message.content.endswith(','):
+        elif message.content.endswith(','):
             await message.edit(content=message.content[:-1])
             await message.channel.send('!i n')
 
