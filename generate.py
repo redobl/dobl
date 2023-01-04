@@ -7,10 +7,11 @@ import sqlite3
 import math
 import base64
 from os import path
-from enum import IntEnum
+from enum import Enum, IntEnum
 
 ITEM_TYPES = ("weapon", "armor", "tool", "consumable", "drone")
 ATTRIBUTES_ALWAYS_KNOWN = ("двуручн", "дальн", "материал")
+BEHAVIOR_TYPES = ("aggressive", "stealthy", "neutral", "tactical", "frugal", "wandering")
 
 class Index(IntEnum):
     NAME = 0
@@ -142,6 +143,8 @@ def main():
                 res = roll_dice(dice, sides)
                 for i in range(sides):
                     print(str(i+1)+": "+str(res[i]))
+        elif sys.argv[1] == "behavior":
+            print(random.choice(BEHAVIOR_TYPES))
 
 
 if __name__ == "__main__":
