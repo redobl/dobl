@@ -1,0 +1,3 @@
+[submodule "dobl-whoami-bot"]
+	path = dobl-whoami-bot
+	url = git@github.com:CreativeeBlackWolf/dobl-whoami-bot.git
