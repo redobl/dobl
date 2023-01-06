@@ -23,7 +23,9 @@ def sort_inventory(inventory):
     while i < len(inventory):
         item = inventory[i]
         
-        if re.match(equippedPattern, item):
+        if item == '':
+            inventory.pop(i)
+        elif re.match(equippedPattern, item):
             for match in re.finditer(equippedPattern, item):
                 number = int(match.group(1))
                 value = item[match.end():]
@@ -50,8 +52,9 @@ def sort_inventory(inventory):
     nextNum = 1
     for item in inventory:
         if item.number is not None:
-            item.number = nextNum
-            nextNum += 1
+            if item.number != 0:
+                item.number = nextNum
+                nextNum += 1
             if item.equipped:
                 result += str(item.number)+"э. "+item.value+"\n"
             else:
