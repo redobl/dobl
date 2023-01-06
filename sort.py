@@ -2,6 +2,7 @@
 
 import sys
 import re
+import base64
 
 equippedPattern = r"^(\d+)э\. "
 unequippedPattern = r"(^\d+)\. "
@@ -62,5 +63,8 @@ def sort_inventory(inventory):
 if __name__ == "__main__":
     if len(sys.argv) == 2:
         print(sort_inventory(sys.argv[1]))
+    elif len(sys.argv) == 3 and sys.argv[1] == "base64":
+        import base64
+        print(str(base64.b64encode(sort_inventory(sys.argv[2]).encode("utf-8")), "utf-8"))
     else:
-        print("Usage: sort.py <inventory>")
+        print("Usage: sort.py [base64] <inventory>")
