@@ -12,6 +12,18 @@ from enum import Enum, IntEnum
 ITEM_TYPES = ("weapon", "armor", "tool", "consumable", "drone")
 ATTRIBUTES_ALWAYS_KNOWN = ("двуручн", "дальн", "материал")
 BEHAVIOR_TYPES = ("aggressive", "stealthy", "neutral", "tactical", "frugal", "wandering")
+NPC_SP_CHOICES_LOWLVL = (
+    "получить случайный предмет",
+    "улучшить предмет",
+    "увеличить макс. ОЗ"
+)
+NPC_SP_CHOICES = (
+    "получить случайный предмет",
+    "улучшить предмет",
+    "увеличить макс. ОЗ",
+    "получить случайный навык",
+    "улучшить навык"
+)
 
 class Index(IntEnum):
     NAME = 0
@@ -145,6 +157,15 @@ def main():
                     print(str(i+1)+": "+str(res[i]))
         elif sys.argv[1] == "behavior":
             print(random.choice(BEHAVIOR_TYPES))
+        elif sys.argv[1] == "npc":
+            lvl = int(sys.argv[2])
+            if lvl < 3:
+                availableChoices = NPC_SP_CHOICES_LOWLVL
+            else:
+                availableChoices = NPC_SP_CHOICES
+            results = roll_dice(lvl*3, len(availableChoices))
+            for i in range(len(availableChoices)):
+                print(str(results[i])+": "+availableChoices[i])
 
 
 if __name__ == "__main__":
