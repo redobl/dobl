@@ -10,3 +10,11 @@ CREATE TABLE items (
 	weight INTEGER,
 	slot TEXT
 );
+
+-- abilities definition
+
+CREATE TABLE abilities (
+	id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+	"type" TEXT NOT NULL,
+	"text" TEXT NOT NULL
+);

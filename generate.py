@@ -25,13 +25,16 @@ NPC_SP_CHOICES = (
     "улучшить навык"
 )
 
-class Index(IntEnum):
+class ItemsIndex(IntEnum):
     NAME = 0
     LOOK = 1
     TYPE = 2
     ATTRIBUTES = 3
     DURABILITY = 4
     WEIGHT = 5
+class AbilsIndex(IntEnum):
+    TYPE = 0
+    TEXT = 1
 
 scriptDir = path.dirname(path.abspath(__file__))
 
@@ -44,24 +47,24 @@ def gen_item(c, type=None):
     items = c.fetchall()
     for i in range(len(items)):
         items[i] = list(items[i])
-        if items[i][Index.DURABILITY] is None:
-            items[i][Index.DURABILITY] = 20
-        if items[i][Index.WEIGHT] is None:
-            items[i][Index.WEIGHT] = 1
-    weights = [i[Index.WEIGHT] for i in items]
+        if items[i][ItemsIndex.DURABILITY] is None:
+            items[i][ItemsIndex.DURABILITY] = 20
+        if items[i][ItemsIndex.WEIGHT] is None:
+            items[i][ItemsIndex.WEIGHT] = 1
+    weights = [i[ItemsIndex.WEIGHT] for i in items]
     item = random.choices(items, weights=weights, k=1)[0]
-    if item[Index.LOOK] == item[Index.NAME]:
-        name = item[Index.NAME]
+    if item[ItemsIndex.LOOK] == item[ItemsIndex.NAME]:
+        name = item[ItemsIndex.NAME]
     else:
-        name = item[Index.LOOK] + " (" + item[Index.NAME] + ")"
+        name = item[ItemsIndex.LOOK] + " (" + item[ItemsIndex.NAME] + ")"
     attrList = []
-    for i in json.loads(item[Index.ATTRIBUTES]):
+    for i in json.loads(item[ItemsIndex.ATTRIBUTES]):
         if i in ATTRIBUTES_ALWAYS_KNOWN:
             attrList.append(i)
         else:
             attrList.append("???"+i)
     attributes = "{" + ", ".join(attrList) + "}"
-    return f"{name} {attributes} ({item[Index.DURABILITY]}/{item[Index.DURABILITY]})"
+    return f"{name} {attributes} ({item[ItemsIndex.DURABILITY]}/{item[ItemsIndex.DURABILITY]})"
 
 # Calculate HP or MP based on starting value and spent SP
 def gen_hp_mp(start, sp):
@@ -84,6 +87,13 @@ def gen_property(start, sp):
         else:
             result += 1
     return result
+
+# Generate ability
+def gen_abil(c):
+    c.execute("SELECT type, text FROM abilities")
+    abils = c.fetchall()
+    abil = random.choice(abils)
+    return f"{abil[AbilsIndex.TYPE][0]}{abil[AbilsIndex.TEXT]}"
 
 # Roll many dice and display results, categorized by value
 def roll_dice(dice, sides):
@@ -166,6 +176,13 @@ def main():
             results = roll_dice(lvl*3, len(availableChoices))
             for i in range(len(availableChoices)):
                 print(str(results[i])+": "+availableChoices[i])
+        elif sys.argv[1] == "ability_base64":
+            conn = sqlite3.connect(path.join(scriptDir, "database.db"))
+            c = conn.cursor()
+            res = gen_abil(c)
+            encodedBytes = base64.b64encode(res.encode("utf-8"))
+            encodedStr = str(encodedBytes, "utf-8")
+            print(encodedStr)
 
 
 if __name__ == "__main__":
