@@ -70,7 +70,7 @@ def gen_item(c, type=None):
 def gen_hp_mp(start, sp):
     result = start
     for i in range(sp):
-        newres = math.floor(result*1.05)
+        newres = math.floor(result*1.1)
         if newres > result:
             result = newres
         else:
