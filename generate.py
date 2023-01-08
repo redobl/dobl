@@ -77,7 +77,7 @@ def gen_hp_mp(start, sp):
             result += 1
     return result
 
-def gen_abil(start, sp):
+def gen_abil_lvl(start, sp):
     result = start
     for i in range(sp):
         newres = math.floor(result*1.1)
@@ -169,7 +169,7 @@ def main():
                 else:
                     start = int(sys.argv[2])
                     sp = int(sys.argv[3])
-                print(gen_abil(start, sp))
+                print(gen_abil_lvl(start, sp))
         elif sys.argv[1] in ["property", "prop"]:
             if len(sys.argv) < 4:
                 print("Usage: generate.py property <start> <sp>")
