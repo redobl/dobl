@@ -70,6 +70,16 @@ def gen_item(c, type=None):
 def gen_hp_mp(start, sp):
     result = start
     for i in range(sp):
+        newres = math.floor(result*1.05)
+        if newres > result:
+            result = newres
+        else:
+            result += 1
+    return result
+
+def gen_abil(start, sp):
+    result = start
+    for i in range(sp):
         newres = math.floor(result*1.1)
         if newres > result:
             result = newres
@@ -138,9 +148,9 @@ def main():
             encodedBytes = base64.b64encode(res.encode("utf-8"))
             encodedStr = str(encodedBytes, "utf-8")
             print(encodedStr)
-        elif sys.argv[1] in ("hp", "mp", "skill", "trait"):
+        elif sys.argv[1] in ("hp", "mp"):
             if len(sys.argv) < 3:
-                print("Usage: generate.py hp|mp|skill|trait [start] <sp>")
+                print("Usage: generate.py hp|mp [start] <sp>")
             else:
                 if len(sys.argv) == 3:
                     start = 100
@@ -149,6 +159,17 @@ def main():
                     start = int(sys.argv[2])
                     sp = int(sys.argv[3])
                 print(gen_hp_mp(start, sp))
+        elif sys.argv[1] in ("abil", "skill", "trait"):
+            if len(sys.argv) < 3:
+                print("Usage: generate.py abil|skill|trait <start> <sp>")
+            else:
+                if len(sys.argv) == 3:
+                    start = 100
+                    sp = int(sys.argv[2])
+                else:
+                    start = int(sys.argv[2])
+                    sp = int(sys.argv[3])
+                print(gen_abil(start, sp))
         elif sys.argv[1] in ["property", "prop"]:
             if len(sys.argv) < 4:
                 print("Usage: generate.py property <start> <sp>")
