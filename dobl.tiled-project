@@ -1,0 +1,246 @@
+{
+    "automappingRulesFile": "",
+    "commands": [
+    ],
+    "extensionsPath": "extensions",
+    "folders": [
+        "."
+    ],
+    "propertyTypes": [
+        {
+            "color": "#ffffffff",
+            "id": 2,
+            "members": [
+                {
+                    "name": "ID игрока",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "Группа",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "Инвентарь",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "Навыки",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "Ослеплён",
+                    "type": "bool",
+                    "value": false
+                },
+                {
+                    "name": "Особенности",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "Очки Души",
+                    "type": "float",
+                    "value": 3
+                },
+                {
+                    "name": "Очки Здоровья",
+                    "type": "string",
+                    "value": "100/100 (100)"
+                },
+                {
+                    "name": "Очки Маны",
+                    "type": "string",
+                    "value": "100/100 (100)"
+                },
+                {
+                    "name": "Последний торговец",
+                    "type": "object",
+                    "value": 0
+                },
+                {
+                    "name": "Рероллы",
+                    "type": "int",
+                    "value": 2
+                },
+                {
+                    "name": "Скрыт",
+                    "type": "bool",
+                    "value": false
+                },
+                {
+                    "name": "Уровень",
+                    "type": "int",
+                    "value": 1
+                },
+                {
+                    "name": "Фраги",
+                    "type": "string",
+                    "value": "0/4"
+                },
+                {
+                    "name": "Эффекты",
+                    "type": "string",
+                    "value": ""
+                }
+            ],
+            "name": "Игрок",
+            "type": "class",
+            "useAs": [
+                "property",
+                "object"
+            ]
+        },
+        {
+            "color": "#ffff0000",
+            "id": 1,
+            "members": [
+                {
+                    "name": "Группа",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "Инвентарь",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "Навыки",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "Нанят",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "Ослеплён",
+                    "type": "bool",
+                    "value": false
+                },
+                {
+                    "name": "Особенности",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "Очки Души",
+                    "type": "float",
+                    "value": 0
+                },
+                {
+                    "name": "Очки Здоровья",
+                    "type": "string",
+                    "value": "100/100 (100)"
+                },
+                {
+                    "name": "Очки Маны",
+                    "type": "string",
+                    "value": "100/100 (100)"
+                },
+                {
+                    "name": "Поведение",
+                    "type": "string",
+                    "value": "special"
+                },
+                {
+                    "name": "Скрыт",
+                    "type": "bool",
+                    "value": false
+                },
+                {
+                    "name": "Уровень",
+                    "type": "int",
+                    "value": 1
+                },
+                {
+                    "name": "Фраги",
+                    "type": "string",
+                    "value": "0/4"
+                },
+                {
+                    "name": "Эффекты",
+                    "type": "string",
+                    "value": ""
+                }
+            ],
+            "name": "НПЦ",
+            "type": "class",
+            "useAs": [
+                "property",
+                "object"
+            ]
+        },
+        {
+            "color": "#ff0000ff",
+            "id": 3,
+            "members": [
+                {
+                    "name": "Владелец",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "Директива",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "Инвентарь",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "Скрыт",
+                    "type": "bool",
+                    "value": false
+                }
+            ],
+            "name": "Предмет(-ы)",
+            "type": "class",
+            "useAs": [
+                "property",
+                "object"
+            ]
+        },
+        {
+            "color": "#ff000000",
+            "id": 4,
+            "members": [
+            ],
+            "name": "Труп",
+            "type": "class",
+            "useAs": [
+                "property",
+                "object"
+            ]
+        },
+        {
+            "color": "#ffffff00",
+            "id": 5,
+            "members": [
+                {
+                    "name": "Прочность",
+                    "type": "string",
+                    "value": "100/100"
+                },
+                {
+                    "name": "Структура",
+                    "type": "string",
+                    "value": ""
+                }
+            ],
+            "name": "Структура",
+            "type": "class",
+            "useAs": [
+                "property",
+                "object"
+            ]
+        }
+    ]
+}
