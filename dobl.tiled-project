@@ -225,11 +225,6 @@
             "id": 5,
             "members": [
                 {
-                    "name": "Прочность",
-                    "type": "string",
-                    "value": "100/100"
-                },
-                {
                     "name": "Структура",
                     "type": "string",
                     "value": ""
