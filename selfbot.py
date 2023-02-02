@@ -22,9 +22,14 @@ class Client(discord.Client):
             elif message.content.startswith('-р'):
                 if len(message.content) == 2:
                     thres = 50
+                    await message.channel.send(f'!r 1d100<={thres}')
                 else:
-                    thres = int(message.content[2:])
-                await message.channel.send(f'!r 1d100<={thres}')
+                    thres = int(message.content[2:4])
+                    if len(message.content) > 4:
+                        await message.channel.send(f'!r 1d100<={thres} [{message.content[4:]}]')
+                    else:
+                        await message.channel.send(f'!r 1d100<={thres}')
+                await message.delete()
             elif message.content == '-ч':
                 await message.delete()
                 lastMessage = (await message.channel.history(limit=1).flatten())[0]
