@@ -1,6 +1,6 @@
 # dobl
 
-Stuff in this repo is useful to DM DoBL, a dungeon crawling text role playing game filled with despair and misfortune.
+Stuff in this repo is useful to DM Dungeon of Bad Luck, a dungeon crawling text role playing game filled with despair and misfortune.
 
 ## More useful stuff
 
