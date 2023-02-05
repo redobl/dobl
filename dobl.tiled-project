@@ -32,6 +32,11 @@
                     "value": ""
                 },
                 {
+                    "name": "Навыки предметов",
+                    "type": "string",
+                    "value": ""
+                },
+                {
                     "name": "Ослеплён",
                     "type": "bool",
                     "value": false
@@ -110,6 +115,11 @@
                 },
                 {
                     "name": "Навыки",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "Навыки предметов",
                     "type": "string",
                     "value": ""
                 },
@@ -209,21 +219,14 @@
             ]
         },
         {
-            "color": "#ff000000",
-            "id": 4,
-            "members": [
-            ],
-            "name": "Труп",
-            "type": "class",
-            "useAs": [
-                "property",
-                "object"
-            ]
-        },
-        {
             "color": "#ffffff00",
             "id": 5,
             "members": [
+                {
+                    "name": "Скрыт",
+                    "type": "bool",
+                    "value": false
+                },
                 {
                     "name": "Структура",
                     "type": "string",
@@ -231,6 +234,18 @@
                 }
             ],
             "name": "Структура",
+            "type": "class",
+            "useAs": [
+                "property",
+                "object"
+            ]
+        },
+        {
+            "color": "#ff000000",
+            "id": 4,
+            "members": [
+            ],
+            "name": "Труп",
             "type": "class",
             "useAs": [
                 "property",
