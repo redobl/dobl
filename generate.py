@@ -70,7 +70,7 @@ def gen_item(c, type=None):
 def gen_hp_mp(start, sp):
     result = start
     for i in range(sp):
-        newres = math.floor(result*1.05)
+        newres = math.floor(result*1.15)
         if newres > result:
             result = newres
         else:
@@ -80,7 +80,7 @@ def gen_hp_mp(start, sp):
 def gen_abil_lvl(start, sp):
     result = start
     for i in range(sp):
-        newres = math.floor(result*1.1)
+        newres = math.floor(result*1.3)
         if newres > result:
             result = newres
         else:
@@ -91,7 +91,7 @@ def gen_abil_lvl(start, sp):
 def gen_property(start, sp):
     result = start
     for i in range(sp):
-        newres = math.floor(result*1.2)
+        newres = math.floor(result*1.6)
         if newres > result:
             result = newres
         else:
