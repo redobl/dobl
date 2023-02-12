@@ -1,6 +1,6 @@
 var action = tiled.registerAction("GenAbilities", function (action) {
     var spentSP = tiled.prompt("How many abilities?");
-    var scriptPath = tiled.projectFilePath+"\\generate.py"
+    var scriptPath = tiled.projectFilePath+tiled.fileSep+"generate.py"
     
     var skills = [];
     var traits = [];

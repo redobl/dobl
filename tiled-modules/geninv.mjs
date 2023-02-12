@@ -1,7 +1,7 @@
 var action = tiled.registerAction("GenInventory", function (action) {
     var spentSP = tiled.prompt("How many items?");
     var process = new Process();
-    var scriptPath = tiled.projectFilePath+"\\generate.py"
+    var scriptPath = tiled.projectFilePath+tiled.fileSep+"generate.py"
     
     process.exec("python",[scriptPath,"item_base64",spentSP]);
     var result = process.readLine();

@@ -1,6 +1,6 @@
 var action = tiled.registerAction("GenBehavior", function (action) {
     var process = new Process();
-    var scriptPath = tiled.projectFilePath+"\\generate.py"
+    var scriptPath = tiled.projectFilePath+tiled.fileSep+"generate.py"
 
     process.exec("python",[scriptPath,"behavior"]);
     var result = process.readLine();

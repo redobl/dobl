@@ -7,3 +7,4 @@ config.py
 __pycache__/
 deploy.sh
 dobl.code-workspace
+tiled-modules/projectFilePath
