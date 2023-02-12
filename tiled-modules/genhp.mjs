@@ -5,7 +5,10 @@ var action = tiled.registerAction("GenHP", function (action) {
 
     process.exec("python",[scriptPath,"hp","100",spentSP]);
     var result = process.readLine();
-    result = result.replace(/\r?\n?[^\r\n]*$/, "")
+    if (result.includes("\n")) {
+        // remove everything after newline
+        result = result.replace(/\r?\n?[^\r\n]*$/, "")
+    }
 
     var sel = tiled.activeAsset.selectedObjects;
     if (sel.length == 1) {
