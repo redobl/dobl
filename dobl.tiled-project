@@ -2,7 +2,7 @@
     "automappingRulesFile": "",
     "commands": [
     ],
-    "extensionsPath": "extensions",
+    "extensionsPath": "tiled-modules",
     "folders": [
         "."
     ],
@@ -192,8 +192,8 @@
             "members": [
                 {
                     "name": "Владелец",
-                    "type": "string",
-                    "value": ""
+                    "type": "object",
+                    "value": 0
                 },
                 {
                     "name": "Директива",
